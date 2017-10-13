@@ -5,6 +5,7 @@
 <template>
 
   <div class="stats">
+     <img src='docs/sorting-hat.png'>
 
     <h1>Welcome to house {{ houseName }}, ya muggle!</h1>
     
@@ -14,9 +15,9 @@
 
       {{ houseImage }}
 
-      <div v-bind:id="houseImage">
-      <img src='houseImage'>
-    </div>
+      
+      <img src='docs/sorting-hat.png'>
+    
       
 
     </div>
