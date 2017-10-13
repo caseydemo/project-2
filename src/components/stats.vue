@@ -6,12 +6,10 @@
 
 <div class="stats">
 
-
-<!-- <button class="houseName" v-on:click="getHouseName">click this button</button> -->
-  <!-- <house></house> -->
-
-  
-  {{ houseName }}
+<h1>Welcome to house {{ houseName }}, ya dingus!</h1>
+ 
+<p>a little info about {{ houseName }}, </p>
+<p>{{ houseDescription }}</p>
 
   <!-- {{ random }} -->
 </div>
@@ -35,7 +33,7 @@ import house from './house.vue'
   },
   beforeMount(){
     this.getRandomNum(),
-    this.getHouseName()
+    this.getHouseInfo()
   },
     	
 		methods: {
@@ -45,11 +43,11 @@ import house from './house.vue'
        this.random = this.randomNum;
       },
 		
-      getHouseName: function(){
+      getHouseInfo: function(){
         
         this.houseName = this.houseData['Houses'][this.randomNum]['name'];
-        // console.log(this.houseName['Houses'][0]['name']);
-        // console.log("random number is: " + this.random);
+        this.houseDescription = this.houseData['Houses'][this.randomNum]['description'];
+        
       },
     
       // this is where the random number logic needs to go
@@ -61,6 +59,7 @@ import house from './house.vue'
     return {
       
       houseName: '',
+      houseDescription: '',
       randomNum: 0,
       card2: '',
       houseData: {
@@ -69,19 +68,19 @@ import house from './house.vue'
 
         {
           name: 'Gryffindor',
-          description: ''
+          description: 'Robot moustache blacksmith bad guy hairy lipsum andrew weatherall id, robot moustache sterling hairy lipsum great dictator Fallen eyebrow blacksmith bad guy leader of men socially mobile musketeer funny walk id andrew weatherall.'
         },
         {
           name: 'Hufflepuff',
-          description: ''
+          description: 'Professor plum rugged big daft brush Leonine big daft brush bogie basket crumb catcher, professor plum sportacus nigel mansell Leonine cappuccino catcher big daft brush des lynam rugged charlie chaplin bogie basket movember big daft brush magnum pi crumb catcher.'
         },
         {
           name: 'Ravenclaw',
-          description: ''
+          description: 'Erudite headmaster middle eastern despot villain hulk hogan Droopy sam elliott, hulk hogan sam elliott middle eastern despot Droopy villain charlie chaplin dolor sit amet erudite headmaster cappuccino collector gunslinger derek griffiths.'
         },
         {
           name: 'Slytherin',
-          description: ''
+          description: 'Don’t panic hello, we’re cockneys groucho-a-like, mouth coiffure Droopy andrew weatherall don’t panic toothbrush doctor strange groucho-a-like dickie davies hello, we’re cockneys, andrew weatherall groucho-a-like mouth coiffure Droopy freestyle toothbrush hello, we’re cockneys don’t panic off-piste worn with distinction doctor strange dickie davies cappuccino collector.'
         }
 
       ],
