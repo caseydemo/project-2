@@ -1,33 +1,70 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    {{ random }}
+    <h2>Sorting Hat</h2>
+    
+    <div class="display">This is where the random value will go</div>
+
+  <stats random=random></stats>
+
   </div>
+
 </template>
 
 <script>
+import stats from './components/stats.vue' // imports the "stats" component
+
+
+
 export default {
   name: 'app',
+
+
+
+
+  // DATA
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      randomNum: 0,
+      randomHouse: ''
     }
-  }
+  },
+
+
+
+
+  // COMPONENTS
+  components: {
+  'stats': stats
+  },
+
+
+  // BEFORE MOUNT
+  beforeMount(){
+    this.getRandomNum()
+  },
+
+
+
+  // METHODS
+  methods: {
+   getRandomNum: function(){
+       this.randomNum = Math.floor((Math.random() * 4) + 1);
+       // this.$emit('getRandom', this.random);
+       // alert('random num: ' + this.random);
+      return this.randomNum;
+      }
+
+  },
+
+
+  // COMPUTED
+  computed: {
+    
+    
+    },
 }
+
 </script>
 
 <style>
