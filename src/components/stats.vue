@@ -1,7 +1,3 @@
-<!-- this component will hold all the data about the houses and assign a house to the child component "house" -->
-
-
-
 <template>
   <!-- everything inside this div will be displayed in "stats" -->
   <div class="stats">
@@ -15,15 +11,21 @@
         <!-- for styling -->
         <div class="description-wrapper">
 
+         
           <!-- inner styling box -->
           <div class="description-box">
+
+            <!-- dynamic image based on the house chosen -->
+            <img v-bind:src="houseImage">
 
             <!-- description of house -->
             <h3>a little info about {{ houseName }}, </h3>
             <p class="descrition">{{ houseDescription }}</p>
             
-            <!-- dynamic image based on the house chosen -->
-            <img v-bind:src="houseImage">
+            
+            <!-- give the user a chance to randomly change houses -->
+            <button v-on:click="getRandomNum">try a new house</button>
+          
       </div>
     </div>
   </div>
@@ -35,10 +37,12 @@
 	export default {
 		stats : 'stats',
 
+
     // automatically called on page load
   beforeMount(){
-    this.getRandomNum(),
-    this.getHouseInfo()
+    
+      this.getRandomNum()
+    
   },
     	
       // METHODS
@@ -48,6 +52,7 @@
       getRandomNum: function(){
        this.randomNum = Math.floor((Math.random() * 4));
        this.random = this.randomNum;
+       this.getHouseInfo();
       },
 		
       // this pulls information out of the house data object
@@ -66,7 +71,8 @@
         // console.log("houseName: " + this.houseName);
         // console.log("houseDescription: " + this.houseDescription);
         // console.log("houseImage: " + this.houseImage);
-        
+        localStorage.setItem('houseName', this.houseName);
+
       },
 
 		},
@@ -229,27 +235,31 @@
 
 <style scoped>
 .description-box{
-  border-style: solid;
-  border-color: black;
+  /*border-style: solid;
+  border-color: black;*/
   width: 800px;
   display: block;
   margin: auto;
   /*background-color:blue;*/
 }
+
 img{
   display: block;
   margin: auto;
   width:30%;
-  padding-bottom: 50px;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 #hat-img{
-  width: 20%;
+  width: 10%;
   height: auto;
-
 }
 .description-wrapper{
-  padding: 50px;
-  border-style: solid;
-  border-color: red;
+  padding-bottom: 50px;
+  color:white;
+  font-family: 'Nunito', sans-serif;
+/*border-style: solid;
+  border-color: black;*/
 }
 </style>
