@@ -1,16 +1,11 @@
 <template>
   <div id="app">
-    
-    <!-- {{ selectedHouse }} -->
-    <h2>Sorting Hat</h2>
-    
-    <!-- <div class="display">This is where the random value will go</div> -->
-    <!-- <button class="houseName" v-on:click="this.getHouseName">click this button</button> -->
-
-  <stats random=5></stats>
+    <div class="wrapper">
+  
+  <stats></stats>
 
   </div>
-
+</div>
 </template>
 
 <script>
@@ -206,8 +201,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  
+
+
 }
+.wrapper{
+  background-color: #566270;
+}
+
 
 h1, h2 {
   font-weight: normal;
