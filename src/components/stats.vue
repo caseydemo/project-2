@@ -6,11 +6,19 @@
 
   <div class="stats">
 
-    <h1>Welcome to house {{ houseName }}, ya dingus!</h1>
+    <h1>Welcome to house {{ houseName }}, ya muggle!</h1>
     
     <div class="description-box">
       <h3>a little info about {{ houseName }}, </h3>
       <p class="descrition">{{ houseDescription }}</p>
+
+      {{ houseImage }}
+
+      <div v-bind:id="houseImage">
+      <img src='houseImage'>
+    </div>
+      
+
     </div>
 
   </div>
@@ -39,7 +47,7 @@ import house from './house.vue'
     	
 		methods: {
       getRandomNum: function(){
-        alert('it ran');
+       
        this.randomNum = Math.floor((Math.random() * 4));
        this.random = this.randomNum;
       },
@@ -48,8 +56,35 @@ import house from './house.vue'
         
         this.houseName = this.houseData['Houses'][this.randomNum]['name'];
         this.houseDescription = this.houseData['Houses'][this.randomNum]['description'];
+        this.houseImage = this.houseData['Houses'][this.randomNum]['image'];
+        this.changeImage();
         
       },
+
+      changeImage: function(){
+        if(this.houseImage==='docs/Gryffendore.jpg'){
+          // change to gryff picture
+          this.houseImage="<img src='docs/Gryffendore.jpg'>";
+        }
+        else if(this.houseImage==='docs/hufflepuff.jpg'){
+          // change to huffle picture
+          this.houseImage="<img src='docs/Gryffendore.jpg'>";
+        }
+        else if(this.houseImage==='docs/ravenclaw.jpg'){
+          // change to raven picture
+          this.houseImage="<img src='docs/Gryffendore.jpg'>";
+        }
+        else if(this.houseImage==='docs/slytherin.jpg'){
+          // change image to slytherin
+          this.houseImage="<img src='docs/Gryffendore.jpg'>";
+        }
+        else{
+          alert('this shouldn\'t ever happen');
+        }
+
+        }
+      
+
     
       // this is where the random number logic needs to go
 
@@ -61,6 +96,7 @@ import house from './house.vue'
       
       houseName: '',
       houseDescription: '',
+      houseImage: '',
       randomNum: 0,
       card2: '',
       houseData: {
@@ -69,19 +105,23 @@ import house from './house.vue'
 
         {
           name: 'Gryffindor',
-          description: 'Robot moustache blacksmith bad guy hairy lipsum andrew weatherall id, robot moustache sterling hairy lipsum great dictator Fallen eyebrow blacksmith bad guy leader of men socially mobile musketeer funny walk id andrew weatherall.'
+          description: 'Robot moustache blacksmith bad guy hairy lipsum andrew weatherall id, robot moustache sterling hairy lipsum great dictator Fallen eyebrow blacksmith bad guy leader of men socially mobile musketeer funny walk id andrew weatherall.',
+          image: 'docs/Gryffendore.jpg'
         },
         {
           name: 'Hufflepuff',
-          description: 'Professor plum rugged big daft brush Leonine big daft brush bogie basket crumb catcher, professor plum sportacus nigel mansell Leonine cappuccino catcher big daft brush des lynam rugged charlie chaplin bogie basket movember big daft brush magnum pi crumb catcher.'
+          description: 'Professor plum rugged big daft brush Leonine big daft brush bogie basket crumb catcher, professor plum sportacus nigel mansell Leonine cappuccino catcher big daft brush des lynam rugged charlie chaplin bogie basket movember big daft brush magnum pi crumb catcher.',
+          image: 'docs/hufflepuff.jpg'
         },
         {
           name: 'Ravenclaw',
-          description: 'Erudite headmaster middle eastern despot villain hulk hogan Droopy sam elliott, hulk hogan sam elliott middle eastern despot Droopy villain charlie chaplin dolor sit amet erudite headmaster cappuccino collector gunslinger derek griffiths.'
+          description: 'Erudite headmaster middle eastern despot villain hulk hogan Droopy sam elliott, hulk hogan sam elliott middle eastern despot Droopy villain charlie chaplin dolor sit amet erudite headmaster cappuccino collector gunslinger derek griffiths.',
+          image: 'docs/ravenclaw.jpg'
         },
         {
           name: 'Slytherin',
-          description: 'Don’t panic hello, we’re cockneys groucho-a-like, mouth coiffure Droopy andrew weatherall don’t panic toothbrush doctor strange groucho-a-like dickie davies hello, we’re cockneys, andrew weatherall groucho-a-like mouth coiffure Droopy freestyle toothbrush hello, we’re cockneys don’t panic off-piste worn with distinction doctor strange dickie davies cappuccino collector.'
+          description: 'Don’t panic hello, we’re cockneys groucho-a-like, mouth coiffure Droopy andrew weatherall don’t panic toothbrush doctor strange groucho-a-like dickie davies hello, we’re cockneys, andrew weatherall groucho-a-like mouth coiffure Droopy freestyle toothbrush hello, we’re cockneys don’t panic off-piste worn with distinction doctor strange dickie davies cappuccino collector.',
+          image: 'docs/slytherin.jpg'
         }
 
       ],
