@@ -4,15 +4,16 @@
 
 <template>
 
-<div class="stats">
+  <div class="stats">
 
-<h1>Welcome to house {{ houseName }}, ya dingus!</h1>
- 
-<p>a little info about {{ houseName }}, </p>
-<p>{{ houseDescription }}</p>
+    <h1>Welcome to house {{ houseName }}, ya dingus!</h1>
+    
+    <div class="description-box">
+      <h3>a little info about {{ houseName }}, </h3>
+      <p class="descrition">{{ houseDescription }}</p>
+    </div>
 
-  <!-- {{ random }} -->
-</div>
+  </div>
 </template>
 
 <script>
@@ -205,6 +206,13 @@ import house from './house.vue'
 
 </script>
 
-<style>
-
+<style scoped>
+.description-box{
+  border-style: solid;
+  border-color: red;
+  width: 800px;
+  display: block;
+  margin: auto;
+  /*background-color:blue;*/
+}
 </style>
