@@ -6,10 +6,14 @@
 
 <div class="stats">
 
-  <house></house>
 
-  <button class="houseName" v-on:click="this.getHouseName">click this button</button>
-  <!-- <span>{{ random }}</span> -->
+<!-- <button class="houseName" v-on:click="getHouseName">click this button</button> -->
+  <!-- <house></house> -->
+
+  
+  {{ houseName }}
+
+  <!-- {{ random }} -->
 </div>
 </template>
 
@@ -22,20 +26,30 @@ import house from './house.vue'
 
 	export default {
 		stats : 'stats',
-    props : [ 'random' ],
+    // props : [ 'random' ],
 
 
     components : {
       house
     
   },
+  beforeMount(){
+    this.getRandomNum(),
+    this.getHouseName()
+  },
     	
 		methods: {
+      getRandomNum: function(){
+        alert('it ran');
+       this.randomNum = Math.floor((Math.random() * 4));
+       this.random = this.randomNum;
+      },
 		
       getHouseName: function(){
-        this.houseName=this.houseData;
-        console.log(this.houseName['Houses'][0]['name']);
-        console.log("random number is: " + this.random);
+        
+        this.houseName = this.houseData['Houses'][this.randomNum]['name'];
+        // console.log(this.houseName['Houses'][0]['name']);
+        // console.log("random number is: " + this.random);
       },
     
       // this is where the random number logic needs to go
@@ -47,6 +61,7 @@ import house from './house.vue'
     return {
       
       houseName: '',
+      randomNum: 0,
       card2: '',
       houseData: {
   
@@ -181,7 +196,9 @@ import house from './house.vue'
 
       ]
 
+    
     }
+      
 
     		}
   		}
