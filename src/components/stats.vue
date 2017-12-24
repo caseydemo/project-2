@@ -1,31 +1,23 @@
 <template>
-  <!-- everything inside this div will be displayed in "stats" -->
   <div class="stats">
+    <!-- <img class="hat" src="docs/sorting-hat.png" alt="Card image cap"> -->
+    <h1 class="house-title">Welcome to house {{ houseName }}</h1>
+    <h6 class="house-subtitle"> ya muggle</h6>
+    
+    <div class="card" style="margin:auto; width: 75%;">
+      
+      <div class="card-body">
+        <h4 class="card-title">{{ houseName }}</h4>
+        <img class="house-img" v-bind:src="houseImage">
+        <a v-on:click="descriptionBool()" class="btn btn-primary">Show Description</a>
+      <a v-on:click="getRandomNum" class="btn btn-primary">try a new house</a>
+        <p v-show="showDescription" class="card-text">{{ houseDescription }}</p>
+      </div>
+    </div>
 
-    <!-- welcome message -->
-    <h1>Welcome to house {{ houseName }}, ya muggle!</h1>
-     
-     <!-- sorting hat picture -->
-     <img id="hat-img" src='docs/sorting-hat.png'>
-
-        <!-- for styling -->
-        <div class="description-wrapper">
-
-         
-          <!-- inner styling box -->
-          <div class="description-box">
-
-            <!-- dynamic image based on the house chosen -->
-            <img v-bind:src="houseImage">
-
-            <!-- description of house -->
-            <h3>a little info about {{ houseName }}, </h3>
-            <p class="descrition">{{ houseDescription }}</p>
-            
-            
-            <!-- give the user a chance to randomly change houses -->
-            <button v-on:click="getRandomNum">try a new house</button>
-          
+    <div class="description-wrapper">
+      <div class="description-box">
+        
       </div>
     </div>
   </div>
@@ -45,36 +37,24 @@
     
   },
     	
-      // METHODS
 		methods: {
 
-      // this creates a random number 
       getRandomNum: function(){
        this.randomNum = Math.floor((Math.random() * 4));
        this.random = this.randomNum;
        this.getHouseInfo();
       },
 		
-      // this pulls information out of the house data object
       getHouseInfo: function(){
-
-        // console.log("this is the house info function");
-        
-        // pulls out the house name
+        console.dir(this.houseData['Houses'][this.randomNum]['name']);
         this.houseName = this.houseData['Houses'][this.randomNum]['name'];
-
-        // pulls out the house description
         this.houseDescription = this.houseData['Houses'][this.randomNum]['description'];
-
-        // pulls out the house image
         this.houseImage = this.houseData['Houses'][this.randomNum]['image'];
-        // console.log("houseName: " + this.houseName);
-        // console.log("houseDescription: " + this.houseDescription);
-        // console.log("houseImage: " + this.houseImage);
         localStorage.setItem('houseName', this.houseName);
-
       },
-
+      descriptionBool: function(){
+        this.showDescription = !this.showDescription;
+      },
 		},
 		
 
@@ -86,6 +66,7 @@
       houseDescription: '',
       houseImage: '',
       randomNum: 0,
+      showDescription:false,
       houseData: {
   
       'Houses': [
@@ -234,6 +215,8 @@
 </script>
 
 <style scoped>
+
+
 .description-box{
   /*border-style: solid;
   border-color: black;*/
@@ -243,23 +226,35 @@
   /*background-color:blue;*/
 }
 
-img{
+.house-img{
   display: block;
   margin: auto;
-  width:30%;
-  height: auto;
+  max-width:600px;
+  height: 400px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-#hat-img{
-  width: 10%;
-  height: auto;
-}
+
 .description-wrapper{
   padding-bottom: 50px;
   color:white;
   font-family: 'Nunito', sans-serif;
 /*border-style: solid;
   border-color: black;*/
+}
+.btn{
+  cursor: pointer;
+}
+.hat{
+  display: inline-block;
+  width: 25%;
+  height: auto;
+  margin:auto;
+}
+.house-title{
+  display: inline-block;
+}
+.house-subtitle{
+  display: inline-block;
 }
 </style>
